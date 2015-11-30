@@ -51,15 +51,15 @@ except ImportError:
 ### Static config
 
 # pydoc and distutils supported exports
-__version__ = '0.6'
-__author__ = "Berend (.mpe)"
-__author_email__ = "dev,pydelicious@dotmpe.com"
+__version__ = '0.6.1'
+__author__ = "Zhu Yu"
+__author_email__ = "mike.zhuyu@gmail.com"
 #__date__ = "$Date$"[]
 __credits__ = """Frank Timmermann (original author), and in no
-particular order: Greg Pinero, me.gooz, mohangk, stumble.then.rise, clupprich"""
+particular order: Berend, Greg Pinero, me.gooz, mohangk, stumble.then.rise, clupprich"""
 __license__ = 'FreeBSD'
 __rcs_id__ = "$Id$"[3:-1]
-__url__ = 'http://code.google.com/p/pydelicious/'
+__url__ = 'https://github.com/passwind/pydelicious'
 __docformat__ = "restructuredtext en"
 __description__ = "Access delicious.com API's with Python"
 __long_description__ = "A complete Python interface to del.icio.us Bookmarks' HTTP API's."
@@ -75,7 +75,7 @@ DLCS_API_REALM = 'del.icio.us API'
 DLCS_API_HOST = 'api.del.icio.us'
 DLCS_API_PATH = 'v1'
 DLCS_API = "https://%s/%s" % (DLCS_API_HOST, DLCS_API_PATH)
-DLCS_RSS = 'http://feeds.delicious.com/rss/'
+DLCS_RSS = 'http://previous.delicious.com/v2/rss/'
 "Old RSS feeds, formerly <http://del.icio.us/rss/>"
 DLCS_FEEDS = 'http://feeds.delicious.com/v2/'
 
@@ -446,10 +446,10 @@ def dlcs_rss_request(tag="", popular=0, user="", url=''):
         url = DLCS_RSS + "tag/%s" % tag
 
     elif popular == 1 and tag == '':
-        url = DLCS_RSS + 'popular/'
+        url = DLCS_RSS + 'popular'
 
     elif popular == 1 and tag != '':
-        url = DLCS_RSS + 'popular/%s' % tag
+        url = DLCS_RSS + 'popular?tag=%s' % tag
 
     if DEBUG:
         print 'dlcs_rss_request', url
@@ -478,12 +478,12 @@ def dlcs_rss_request(tag="", popular=0, user="", url=''):
             description = e["title_detail"]['value']
         else:
             description = ''
-        try: tags = e['categories'][0][1]
+        try: tags = e['tags'][0]['term']
         except:
-            try: tags = e["category"]
+            try: tags = e["tags"]
             except: tags = ""
-        if e.has_key("modified"):
-            dt = e['modified']
+        if e.has_key("published"):
+            dt = e['published']
         else:
             dt = ""
         if e.has_key("summary"):
