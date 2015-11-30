@@ -1,3 +1,7 @@
+0.6.1
+    Change RSS Url to http://previous.delicious.com/v2/rss/
+    Modify parsing rss entries
+    
 0.5.1
     Lots of cosmetic changes in formatting, documentation.
     Slight update to some methods for hashes/meta params.
