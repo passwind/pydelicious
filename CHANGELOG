@@ -1,6 +1,7 @@
 0.6.1
     Change RSS Url to http://previous.delicious.com/v2/rss/
     Modify parsing rss entries
+    BUT the RSS api is deprecated NOW!!! So some RSS APIs are out of work!!! :(
     
 0.5.1
     Lots of cosmetic changes in formatting, documentation.

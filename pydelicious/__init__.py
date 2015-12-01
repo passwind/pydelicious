@@ -431,7 +431,7 @@ def dlcs_rss_request(tag="", popular=0, user="", url=''):
     user = quote_plus(user)
 
     if url != '':
-        url = DLCS_RSS + 'url/%s' % md5(url).hexdigest()
+        url = DLCS_RSS + 'href?href=%s' % md5(url).hexdigest()
 
     elif user != '' and tag != '':
         url = DLCS_RSS + '%(user)s/%(tag)s' % {'user':user, 'tag':tag}
